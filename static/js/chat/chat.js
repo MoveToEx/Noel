@@ -243,10 +243,10 @@ class Sender {
 }
 
 if (location.port) {
-    path = `${location.hostname}:${location.port}/room/1/`;
+    path = `${location.hostname}:${location.port}/`;
 }
 else {
-    path = `${location.hostname}/room/1/`;
+    path = `${location.hostname}/`;
 }
 
 var socket = new WebSocket(`ws://${path}`);
