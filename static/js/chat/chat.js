@@ -102,7 +102,7 @@ class Message {
             var avatar = document.createElement('img');
             avatar.classList.add('message-avatar', 'mdui-center');
             avatar.setAttribute('source-user', sender.username);
-            avatar.src = '/media/' + sender.avatar;
+            avatar.src = sender.avatar;
             avatar.addEventListener('dblclick', e => {
                 let sel = quill.getSelection();
                 if (sel) {
@@ -122,6 +122,12 @@ class Message {
         }
         var col = document.createElement('div');
         col.classList.add('mdui-col-md-11', 'mdui-col-xs-10', 'mdui-valign');
+        if (sender.nickname) {
+            var nickname = document.createElement('span');
+            nickname.innerText = sender.nickname;
+            nickname.classList.add('message-nickname');
+            col.appendChild(nickname);
+        }
         if (sender.username) {
             var username = document.createElement('span');
             username.innerText = '@' + sender.username;
@@ -130,7 +136,7 @@ class Message {
         }
         if (sender.title) {
             var title = document.createElement('span');
-            title.classList.add('user-title', 'user-title-level-' + sender.title_level);
+            title.classList.add('user-title', 'user-title-style-' + sender.title_level);
             title.innerText = sender.title;
             col.appendChild(title);
         }

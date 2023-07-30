@@ -14,7 +14,7 @@ class HttpResponseImATeaPot(HttpResponse):
 
 
 @login_required(login_url='user:login')
-def home(request: HttpRequest):
+def index(request: HttpRequest):
     posts = Post.objects.order_by('-pinned', '-pub_time')
     if len(posts) > 30:
         posts = posts[:30]
@@ -22,7 +22,7 @@ def home(request: HttpRequest):
         "user": request.user,
         "posts": posts
     }
-    return render(request, 'zone/home.html', context)
+    return render(request, 'zone/index.html', context)
 
 
 @login_required(login_url='user:login')
@@ -40,10 +40,12 @@ def detail(request: HttpRequest, post_id: uuid.UUID):
 def comment(request: HttpRequest, post_id: uuid.UUID):
     if request.method == 'GET':
         return HttpResponseImATeaPot()
-    comment = Comment.objects.create(
-        author=request.user, pub_time=datetime.now(), post=Post.objects.get(id=post_id))
-    comment.content = request.POST['content']
-    comment.save()
+    Comment.objects.create(**{
+        'author': request.user,
+        'pub_time': datetime.now(),
+        'post': Post.objects.get(id=post_id),
+        'content': request.POST['content']
+    }).save()
     return redirect('zone:detail', post_id)
 
 @login_required(login_url='user:login')
@@ -64,5 +66,5 @@ def new(request: HttpRequest):
         thumb.save(buf, fmt)
         post.thumbnail = ContentFile(buf.getvalue())
         post.save()
-        return redirect('zone:home')
+        return redirect('zone:index')
 

@@ -51,7 +51,7 @@ def login(request: HttpRequest):
         user = auth.authenticate(request, username=request.POST['username'], password=request.POST['password'])
         if user:
             auth.login(request, user)
-            return redirect('zone:home')
+            return redirect('zone:index')
         else:
             return redirect('user:login')
         

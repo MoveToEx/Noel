@@ -1,3 +1,13 @@
+@keyframes title-rotation {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(359deg);
+    }
+}
+
 .user-title-style-owner {
     background-color: gold;
     font-weight: bold;
@@ -22,11 +32,13 @@
 }
 
 .user-title-style-movetoex {
+    display: inline-block;
     background-color: skyblue;
     color: black;
-    font-weight: light;
+    font-weight: 300;
     padding: 4px 2px 4px 2px;
     border-radius: 4px;
+    animation: title-rotation 2s infinite cubic-bezier(1, 0, 0, 1);
 }
 
 .user-title-style-normal {

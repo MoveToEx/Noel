@@ -25,6 +25,7 @@ urlpatterns = [
     path('', RedirectView.as_view(url='zone/', permanent=True )),
     path('zone/', include('zone.urls')),
     path('user/', include('user.urls')),
+    path('chat/', include('chat.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
