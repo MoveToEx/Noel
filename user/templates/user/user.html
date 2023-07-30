@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}{{target.username}}的个人主页{% endblock %}
+
+{% block content %}
+
+<style>
+    html {
+        height: 100%;
+        {% if target.background_image %}
+        background-image: url('{{ target.background_image.url }}');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        {% endif %}
+    }
+
+    body {
+        background: none;
+        margin: 10%;
+    }
+
+    .mdui-drawer {
+        backdrop-filter: blur(64px) brightness(200%);
+        background-color: white;
+    }
+</style>
+
+<div class="mdui-container profile-view">
+    {% include "components/user_info.html" with profile=target %}
+
+    {% include "components/user_detail.html" with profile=target %}
+
+
+    <br />
+
+    <div class="mdui-row">
+        <div class="mdui-col-xs-6 mdui-col-offset-xs-2 mdui-typo" style="font-size: 24px;color:black">
+            {{target.description}}
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleHidden() {
+        document.querySelector('.profile-view').classList.toggle('profile-view-hidden');
+    }
+</script>
+
+<button class="mdui-btn mdui-fab mdui-fab-fixed mdui-ripple mdui-color-pink-50" onclick="toggleHidden()">
+    <i class="mdui-icon material-icons">image</i>
+</button>
+
+{% endblock %}

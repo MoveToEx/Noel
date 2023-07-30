@@ -1,0 +1,36 @@
+{% if post.image %}
+<div class="mdui-col-sm-3 post">
+	<a href="{% url 'zone:detail' post.id %}">
+		{% if post.pinned %}
+		<i class="mdui-icon fa-solid fa-thumbtack pinned-icon" style="background-color: rgba(215, 92, 153, 0);color: #90a5b5c5;"></i> 
+		{% endif %}
+		<img src="{{post.image.url}}" class="post-image" />
+	</a>
+
+	<br />
+
+	<div class="mdui-text-truncate post-content">
+		<a href="{% url 'zone:detail' post.id %}">
+			{{post.content}}
+		</a>
+	</div>
+
+	<div class="mdui-row mdui-valign">
+		<div class="mdui-col-xs-2">
+			<a href="{% url 'user:user' post.author.id %}">
+				<img class="post-avatar" src="{{ post.author.avatar.url }}" />
+			</a>
+		</div>
+		<div class="mdui-col-xs-8">
+			<div class="mdui-text-truncate">
+				<a class="post-username" href="{% url 'user:user' post.author.id %}">
+					{{post.author.nickname}} @{{post.author.username}}
+				</a>
+			</div>
+		</div>
+		{% comment %} <div class="mdui-col-xs-2">
+			<div style="float:left"><i class="mdui-icon material-icons">favorite</i> {{post.likes}}</div>
+		</div> {% endcomment %}
+	</div>
+</div>
+{% endif %}

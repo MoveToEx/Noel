@@ -1,0 +1,18 @@
+<div class="mdui-row mdui-valign" style="height: 48px">
+    <div class="mdui-col-offset-md-1 mdui-col-md-1 mdui-col-xs-2">
+        <a href="{% url 'user:user' user.id %}">
+            <img src="{% if user.avatar %}{{ user.avatar.url }}{% endif %}" class="avatar" />
+        </a>
+    </div>
+    <div class="mdui-col-md-8 mdui-col-xs-10">
+        <div class="mdui-container-fluid">
+            <div class="mdui-row">
+                <span class="nickname">{{user.nickname}}</span>
+                <span class="user-title user-title-style-{{user.title_style}}">{{user.title}}</span>
+            </div>
+            <div class="mdui-row">
+                <span class="username">@{{user.username}}</span>
+            </div>
+        </div>
+    </div>
+</div>

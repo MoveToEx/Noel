@@ -1,0 +1,42 @@
+.user-title-style-owner {
+    background-color: gold;
+    font-weight: bold;
+    padding: 4px 12px 4px 12px;
+    border-radius: 4px;
+}
+
+.user-title-style-admin {
+    background-color: purple;
+    color: white;
+    font-weight: bold;
+    padding: 4px 12px 4px 12px;
+    border-radius: 4px;
+}
+
+.user-title-style-sp {
+    background-color: darkred;
+    color: white;
+    font-weight: bold;
+    padding: 4px 12px 4px 12px;
+    border-radius: 4px;
+}
+
+.user-title-style-movetoex {
+    background-color: skyblue;
+    color: black;
+    font-weight: light;
+    padding: 4px 2px 4px 2px;
+    border-radius: 4px;
+}
+
+.user-title-style-normal {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    padding: 4px 12px 4px 12px;
+    border-radius: 4px;
+}
+
+.user-title {
+    text-align: center;
+}
