@@ -1,0 +1,4 @@
+fontawesomefree
+channels
+daphne
+markdown
