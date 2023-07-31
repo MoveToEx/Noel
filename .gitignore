@@ -2,3 +2,4 @@ __pycache__
 user_uploads/
 migrations
 db.*
+node_modules

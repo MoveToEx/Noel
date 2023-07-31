@@ -22,9 +22,10 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', RedirectView.as_view(url='zone/', permanent=True )),
+    path('', RedirectView.as_view(url='zone/', permanent=True)),
     path('zone/', include('zone.urls')),
     path('user/', include('user.urls')),
+    path('blog/', include('blog.urls')),
     path('chat/', include('chat.urls')),
 ]
 

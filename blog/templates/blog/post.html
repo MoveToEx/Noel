@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% load markdown_extras %}
+
+{% block title %}文章{% endblock %}
+
+{% block content %}
+
+<style>
+    .post-title {
+        font-size: 48px;
+        font-weight: 200;
+    }
+    .post-content {
+        font-size: 32px;
+        padding-top: 12px;
+        font-weight: 300;
+    }
+
+    .nickname,
+    .username,
+    .user-title {
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+
+    .comment-username {
+        font-weight: 300;
+        font-size: 16px;
+    }
+
+    .comment-content {
+        margin: 0 0 0 0;
+        font-size: 18px;
+    }
+</style>
+<br />
+
+<div class="mdui-container" style="padding-top: 32px;">
+    <div class="mdui-row">
+        <div class="mdui-text-center post-title">
+            {{post.title}}
+        </div>
+    </div>
+    <div class="mdui-row">
+        <div class="mdui-text-center post-info">
+            @{{post.author.username}} |
+            <span title='{{ post.pub_time|date:"c" }}'>
+                {{ post.pub_time | date:"Y/m/d G:i" }}
+            </span>
+        </div>
+    </div>
+
+    <div class="mdui-row">
+        <div class="mdui-col-offset-md-2 mdui-col-md-8 mdui-col-xs-12">
+            {{ post.content | markdown | safe }}
+        </div>
+    </div>
+</div>
+
+<div class="mdui-container">
+    {% comment %} <div class="mdui-row">
+        <div class="mdui-col-xs-1 mdui-col-offset-xs-10">
+            <button class="mdui-btn mdui-btn-icon btn-toggle-blur mdui-ripple" id="like-button" onclick="like_or_not()">
+                <i class="mdui-icon material-icons" id="like-icon">favorite{% if liked == 0 %}_border{% endif %}</i>
+            </button>
+        </div>
+    </div> {% endcomment %}
+</div>
+
+{% endblock %}

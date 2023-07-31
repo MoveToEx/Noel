@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from PIL import Image
 from io import BytesIO
 from django.core.files.base import ContentFile
+from django.core.files import File
 from datetime import datetime
 import uuid
 import json
@@ -57,9 +58,12 @@ def new(request: HttpRequest):
     if request.method == 'GET':
         return HttpResponseImATeaPot()
     elif request.method == 'POST':
-        post = Post.objects.create(author=request.user, pub_time=datetime.now())
-        post.content = request.POST['content']
-        post.image = request.FILES['image']
+        post = Post.objects.create(**{
+            'author': request.user,
+            'pub_time': datetime.now(),
+            'content': request.POST['content'],
+            'image': request.FILES['image']
+        })
         buf = BytesIO()
         for chunk in request.FILES['image'].chunks():
             buf.write(chunk)
@@ -68,7 +72,7 @@ def new(request: HttpRequest):
         thumb.thumbnail((512, 512))
         buf = BytesIO()
         thumb.save(buf, fmt)
-        post.thumbnail = ContentFile(buf.getvalue())
+        post.thumbnail = File(buf, request.FILES['image'].name)
         post.save()
         return redirect('zone:index')
 

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'channels',
     'user.apps.UserConfig',
     'zone.apps.ZoneConfig',
+    'blog.apps.BlogConfig',
     'chat.apps.ChatConfig'
 ]
 
@@ -132,7 +133,10 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+    ('node_modules', os.path.join(BASE_DIR, 'node_modules/')),
+)
 
 MEDIA_URL = '/user_uploads/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'user_uploads')
