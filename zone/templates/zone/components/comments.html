@@ -27,10 +27,10 @@
                 <span class="comment-nicnkname mdui-hidden-md-down">{{comment.author.nickname}}</span>
                 <span class="comment-username">@{{comment.author.username}}</span>
                 <span class="user-title user-title-style-{{comment.author.title_style}}">{{comment.author.title}}</span>
-                <span class="comment-pubtime" mdui-tooltip='{content: "{{comment.pub_time|date:"c"}}"}'>{{comment.pub_time|date:"Y/m/d G:i"}}</span>
             </div>
             <div class="mdui-row">
                 <p class="comment-content">{{comment.content}}</p>
+                <span class="comment-pubtime" title='{{comment.pub_time|date:"c"}}'>{{comment.pub_time|date:"Y/m/d G:i"}}</span>
             </div>
         </div>
     </div>

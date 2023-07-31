@@ -88,13 +88,6 @@ class Message {
         this.headerContainer = $('<div class="mdui-row message-header" />');
     }
 
-    static col(element, ...column) {
-        var div = document.createElement('div');
-        div.classList.add(...column.map(x => 'mdui-col-' + x));
-        div.appendChild(element);
-        return div;
-    }
-
     setSender(sender) {
         if (sender.avatar) {
             $(`<img></img>`, {
@@ -216,7 +209,6 @@ var loading = false;
 
 socket.onmessage = function (event) {
     var _ = JSON.parse(event.data);
-    console.log(_);
     var type = _.type;
     var data = _.data;
 
