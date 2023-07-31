@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpRequest
+from django.core import serializers
 from django.contrib.auth.decorators import login_required
 from PIL import Image
 from io import BytesIO
 from django.core.files.base import ContentFile
 from datetime import datetime
 import uuid
+import json
 
 from .models import *
 
@@ -40,13 +42,15 @@ def detail(request: HttpRequest, post_id: uuid.UUID):
 def comment(request: HttpRequest, post_id: uuid.UUID):
     if request.method == 'GET':
         return HttpResponseImATeaPot()
-    Comment.objects.create(**{
-        'author': request.user,
-        'pub_time': datetime.now(),
-        'post': Post.objects.get(id=post_id),
-        'content': request.POST['content']
-    }).save()
-    return redirect('zone:detail', post_id)
+    elif request.method == 'POST':
+        Comment.objects.create(**{
+            'author': request.user,
+            'pub_time': datetime.now(),
+            'post': Post.objects.get(id=post_id),
+            'content': request.POST['content'],
+            'reply': request.POST['reply']
+        }).save()
+        return redirect('zone:detail', post_id)
 
 @login_required(login_url='user:login')
 def new(request: HttpRequest):

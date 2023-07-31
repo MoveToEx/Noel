@@ -13,6 +13,7 @@
     <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
     <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
+    <script src="/static/js/jquery-3.7.0.min.js"></script>
     {% block head %}{% endblock %}
 </head>
 
@@ -59,10 +60,6 @@
     <!-- Drawer -->
     <div class="mdui-drawer mdui-drawer-close">
         <ul class="mdui-list">
-            {% comment %} <a class="mdui-list-item mdui-ripple" href="/">
-                <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
-                <div class="mdui-list-item-content">首页</div>
-            </a> {% endcomment %}
             <a class="mdui-list-item mdui-ripple" href="{% url 'zone:index' %}">
                 <i class="mdui-list-item-icon mdui-icon material-icons">landscape</i>
                 <div class="mdui-list-item-content">空间</div>
@@ -83,11 +80,11 @@
 </body>
 
 <script>
-    document.querySelectorAll('.mdui-drawer > ul > a').forEach(function (e) {
-        if (document.location.pathname == e.attributes['href'].value) {
-            e.classList.toggle('mdui-list-item-active');
-        }
-    })
+$('.mdui-drawer > ul > a').each(function(i) {
+    if (this.attributes['href'].value == document.location.pathname) {
+        this.classList.add('mdui-list-item-active');
+    }
+});
 </script>
 
 <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
