@@ -48,8 +48,8 @@
         }
     });
     $('.comment-content').dblclick(e => {
-        var idx = $(e.target).parents('.comment').attr('comment-index');
-        var rep = $(e.target).parents('.comment').find('.comment-username').text();
+        var idx = $(e.target).parents('.comment').first().attr('comment-index');
+        var rep = $(e.target).parents('.comment').first().find('.comment-username').first().text();
         $('#input-reply').val(idx);
         $('#input-comment').attr('placeholder', `回复 ${rep}...`);
     });
