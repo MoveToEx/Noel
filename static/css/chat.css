@@ -44,7 +44,8 @@
 .mention {
     color: #00a2e8;
     margin: 0 4px 0 4px;
-    user-select: all;
+    display: inline-block;
+    user-select: none;
 }
 
 .mention.mention-hit {

@@ -30,7 +30,7 @@ $('.mention-button').click(e => {
     quill.setSelection(index + 1, 0);
 });
 
-$('insert-ncm-button').click(e => {
+$('#insert-ncm-button').click(e => {
     let s = $('#insert-ncm-input').val();
     let value, index;
 

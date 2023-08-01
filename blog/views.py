@@ -1,21 +1,9 @@
-from django import template
 from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
 from django.contrib.auth.decorators import login_required
-from django.template.defaultfilters import stringfilter
 from datetime import datetime
-import markdown as md
 
 from .models import *
-
-register = template.Library()
-
-@register.filter()
-@stringfilter
-def markdown(value):
-    return md.markdown(value, extensions=[
-        'markdown.extensions.fenced_code'
-    ])
 
 
 @login_required(login_url='user:login')

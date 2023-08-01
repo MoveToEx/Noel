@@ -1,4 +1,5 @@
 let Embed = Quill.import('blots/embed');
+let Inline = Quill.import('blots/inline');
 let Delta = Quill.import('delta');
 let Icon = Quill.import('ui/icons');
 
