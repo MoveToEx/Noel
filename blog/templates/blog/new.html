@@ -10,7 +10,7 @@
 <div class="mdui-container" style="margin-top: 16px;">
     <div id="editor" style="width: 100%; height: 600px">
     </div>
-    
+
     <div class="mdui-row">
         <button class="mdui-btn mdui-center" id="submit-button">
             <i class="mdui-icon material-icons">check</i>
@@ -38,6 +38,7 @@
         require(['vs/editor/editor.main'], function () {
             editor = monaco.editor.create(document.getElementById('editor'), {
                 value: value,
+                autoClosingBrackets: 'never',
                 language: 'markdown'
             });
         });

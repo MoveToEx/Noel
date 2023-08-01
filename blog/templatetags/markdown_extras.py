@@ -11,7 +11,16 @@ register = template.Library()
 @stringfilter
 def markdown(value):
     value = value.replace('[[readmore_anchor]]', '')
-    return md.markdown(value, extensions=['markdown.extensions.fenced_code', 'markdown.extensions.codehilite'])
+    return md.markdown(
+        value,
+        extensions=['markdown.extensions.fenced_code',
+                    'markdown.extensions.codehilite', 'mdx_math'],
+        extension_configs={
+            'mdx_math': {
+                'enable_dollar_delimiter': True
+            }
+        })
+
 
 @register.filter()
 @stringfilter
