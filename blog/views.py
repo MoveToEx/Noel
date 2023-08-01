@@ -6,11 +6,16 @@ from datetime import datetime
 from .models import *
 
 
+class HttpResponseImATeaPot(HttpResponse):
+    status_code = 418
+
 @login_required(login_url='user:login')
 def index(request: HttpRequest):
     posts = Post.objects.all().order_by('-pub_time')
     if len(posts) > 30:
         posts = posts[:30]
+    for post in posts:
+        post.comment_count = Comment.objects.filter(post=post).count()
     context = {
         "user": request.user,
         "posts": posts
@@ -21,16 +26,28 @@ def index(request: HttpRequest):
 @login_required(login_url='user:login')
 def post(request: HttpRequest, post_id: int):
     post = Post.objects.get(id=post_id)
+    comments = Comment.objects.filter(post=post)
     context = {
         'user': request.user,
-        'post': post
+        'post': post,
+        'comments': comments
     }
     return render(request, 'blog/post.html', context)
 
 
 @login_required(login_url='user:login')
 def comment(request: HttpRequest, post_id: int):
-    pass
+    if request.method == 'GET':
+        return HttpResponseImATeaPot()
+    elif request.method == 'POST':
+        Comment.objects.create(**{
+            'author': request.user,
+            'pub_time': datetime.now(),
+            'post': Post.objects.get(id=post_id),
+            'content': request.POST['content'],
+            'reply': request.POST['reply']
+        }).save()
+        return redirect('blog:post', post_id)
 
 
 @login_required(login_url='user:login')

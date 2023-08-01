@@ -52,7 +52,8 @@
             @{{post.author.username}} |
             <span title='{{ post.pub_time|date:"c" }}'>
                 {{ post.pub_time | date:"Y/m/d G:i" }}
-            </span>
+            </span> |
+            <i class="mdui-icon material-icons">comment</i> {{ post.comment_count }}
         </div>
     </div>
 
