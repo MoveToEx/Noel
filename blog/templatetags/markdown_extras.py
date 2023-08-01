@@ -11,7 +11,7 @@ register = template.Library()
 @stringfilter
 def markdown(value):
     value = value.replace('[[readmore_anchor]]', '')
-    return md.markdown(value, extensions=['markdown.extensions.fenced_code'])
+    return md.markdown(value, extensions=['markdown.extensions.fenced_code', 'markdown.extensions.codehilite'])
 
 @register.filter()
 @stringfilter

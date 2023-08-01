@@ -2,3 +2,4 @@ fontawesomefree
 channels
 daphne
 markdown
+Pygments
