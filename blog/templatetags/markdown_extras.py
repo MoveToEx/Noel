@@ -14,12 +14,14 @@ def markdown(value):
     return md.markdown(
         value,
         extensions=['markdown.extensions.fenced_code',
-                    'markdown.extensions.codehilite', 'mdx_math'],
+                    'markdown.extensions.codehilite',
+                    'pymdownx.arithmatex'],
         extension_configs={
-            'mdx_math': {
-                'enable_dollar_delimiter': True
+            'pymdownx.arithmatex': {
+                'generic': True
             }
-        })
+        }
+    )
 
 
 @register.filter()
